@@ -3,6 +3,11 @@ uuid = "995f4f89-f633-4bea-be3c-9aca61510b0b"
 authors = ["Samarin Aleksei <liotbiu1@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+GraphNeuralNetworks = "cffab07f-9bc2-4db1-8861-388f63bf7694"
+Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
 [compat]
 julia = "1"
 

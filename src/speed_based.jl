@@ -48,6 +48,18 @@ function regulate_speed!(speeds_flow_step, current_channels_load, flow_steps_to_
 end
 
 
+"""
+    update_speed!(
+        speeds_flow_step,
+        speeds_start,
+        channels_to_flow_steps,
+        flow_steps_to_channel,
+        max_channels_load
+)
+
+update all speed for every flow and step  
+guaranteed that channel load ≤ max channel load
+"""
 function update_speed!(
     speeds_flow_step,
     speeds_start,

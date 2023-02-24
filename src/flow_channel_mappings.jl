@@ -1,3 +1,9 @@
+"""
+    map_channels_to_flow_steps(flow_steps_to_channel, channel_number)
+
+return vector of tuples:  
+flow indices and step indices for each channel
+"""
 function map_channels_to_flow_steps(flow_steps_to_channel, channel_number)
     flows = Dict(k => Int[] for k in 1:channel_number)
     steps = Dict(k => Int[] for k in 1:channel_number)

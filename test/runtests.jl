@@ -1,5 +1,7 @@
 using DataNetworkModels
 using Test
+using Graphs, GraphNeuralNetworks
+using LinearAlgebra
 
 @testset "propagate_speeds!" begin
     
@@ -147,3 +149,44 @@ end
     result = map_channels_to_flow_steps(flow_steps_to_channel, channel_number)
     @test result == channels_to_flow_steps
 end
+
+
+@testset "update_hop_matrix!" begin
+    graph_adjacency_matrix = [
+        0 1 0 0
+        1 0 1 0
+        0 1 0 1
+        0 0 1 0
+    ]
+    g = GNNGraph(graph_adjacency_matrix)
+    hop_matrix = similar(graph_adjacency_matrix) .= 0
+    
+    hop_matrix_1 = similar(hop_matrix) .= 1
+    hop_matrix_1[diagind(hop_matrix_1)] .= 0
+
+    hop_matrix_2 = [
+        0 1 2 2
+        1 0 1 2
+        2 1 0 1
+        2 2 1 0
+    ]
+    hop_matrix_3 = [
+        0 1 2 3
+        1 0 1 2
+        2 1 0 1
+        3 2 1 0
+    ]
+
+    result1 = update_hop_matrix!(hop_matrix, g) |> copy
+    result2 = update_hop_matrix!(hop_matrix, g) |> copy
+    result3 = update_hop_matrix!(hop_matrix, g) |> copy
+    result4 = update_hop_matrix!(hop_matrix, g)
+
+    @test result1 == hop_matrix_1
+    @test result2 == hop_matrix_2
+    @test result3 == hop_matrix_3
+    @test result4 == hop_matrix_3
+    @test result4 === hop_matrix
+end
+
+
