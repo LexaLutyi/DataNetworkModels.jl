@@ -82,3 +82,13 @@ function find_flow_path(source, target, shortest_paths_to_neighbors)
     @error "No path found" source target
     error("find_flow_path")
 end
+
+
+function node_path_to_channels_path(path, g)
+    s, t = edge_index(g)
+    map(path[1:end - 1], path[2:end]) do source, target
+        A = s .== source
+        B = t .== target
+        findfirst(A .& B)
+    end
+end

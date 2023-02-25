@@ -247,3 +247,16 @@ end
     @test result5 == [5, 4, 3]
     @test result6 == [6, 5]
 end
+
+
+@testset "node_path_to_channels_path" begin
+    s = [1, 2, 3, 4, 3, 2]
+    t = [2, 3, 4, 3, 2, 1]
+    g = GNNGraph(s, t)
+
+    node_path = [1, 2, 3, 4]
+    channel_path = [1, 2, 3]
+
+    result = node_path_to_channels_path(node_path, g)
+    @test result == channel_path
+end
