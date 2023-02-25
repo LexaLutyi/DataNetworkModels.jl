@@ -187,6 +187,34 @@ end
     @test result3 == hop_matrix_3
     @test result4 == hop_matrix_3
     @test result4 === hop_matrix
+    @test result4 == final_hop_matrix(g)
 end
 
 
+@testset "map_shortest_paths_to_neighbors" begin
+    graph_adjacency_matrix = [
+        0 1 0 1
+        1 0 1 0
+        0 1 0 1
+        1 0 1 0
+    ]
+    g = GNNGraph(graph_adjacency_matrix)
+    shortest_paths_to_neighbors = [
+        [Int[], [2], [2, 4], [4]],
+        [[1], Int[], [3], [1, 3]],
+        [[2, 4], [2], Int[], [4]],
+        [[1], [1, 3], [3], Int[]]
+    ]
+
+    hop_matrix = final_hop_matrix(g)
+
+    result = map_shortest_paths_to_neighbors(g, hop_matrix)
+
+    @test result == shortest_paths_to_neighbors
+    
+
+    @test find_next_step(1, 2, shortest_paths_to_neighbors) == 2
+    @test find_next_step(1, 3, shortest_paths_to_neighbors) ∈ [2, 4]
+    @test find_next_step(1, 4, shortest_paths_to_neighbors) == 4
+    @test find_next_step(4, 2, shortest_paths_to_neighbors) ∈ [1, 3]
+end
