@@ -16,7 +16,7 @@ end
 
 
 """
-    channels_load(channels_to_flow_steps, speeds_flow_step)
+    channels_load(speeds_flow_step, channels_to_flow_steps)
 
 return load for each channel  
 `channels_to_flow_steps` maps channel to flows and index of channel in flow  
