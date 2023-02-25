@@ -218,3 +218,32 @@ end
     @test find_next_step(1, 4, shortest_paths_to_neighbors) == 4
     @test find_next_step(4, 2, shortest_paths_to_neighbors) ∈ [1, 3]
 end
+
+
+@testset "find_flow_path" begin
+    graph_adjacency_matrix = [
+        0 1 0 0 0 1
+        1 0 1 0 0 0
+        0 1 0 1 0 0
+        0 0 1 0 1 0
+        0 0 0 1 0 1
+        1 0 0 0 1 0
+    ]
+    g = GNNGraph(graph_adjacency_matrix)
+    hop_matrix = final_hop_matrix(g)
+    shortest_paths_to_neighbors = map_shortest_paths_to_neighbors(g, hop_matrix)
+
+    result1 = find_flow_path(1, 1, shortest_paths_to_neighbors)
+    result2 = find_flow_path(2, 3, shortest_paths_to_neighbors)
+    result3 = find_flow_path(3, 5, shortest_paths_to_neighbors)
+    result4 = find_flow_path(4, 1, shortest_paths_to_neighbors)
+    result5 = find_flow_path(5, 3, shortest_paths_to_neighbors)
+    result6 = find_flow_path(6, 5, shortest_paths_to_neighbors)
+
+    @test result1 == [1]
+    @test result2 == [2, 3]
+    @test result3 == [3, 4, 5]
+    @test result4 ∈ [[4, 5, 6, 1], [4, 3, 2, 1]]
+    @test result5 == [5, 4, 3]
+    @test result6 == [6, 5]
+end
