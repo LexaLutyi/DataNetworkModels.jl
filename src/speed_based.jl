@@ -8,8 +8,8 @@ u[flow][channel] := u[flow][channel - 1]
 function propagate_speeds!(speeds_flow_step, speeds_start)
     foreach(speeds_flow_step, speeds_start) do speeds_step, speed_start
         # for each flow
-        speeds_step[1] = speed_start
         speeds_step[2:end] = speeds_step[1:end - 1]
+        speeds_step[1] = speed_start
     end
     speeds_flow_step
 end

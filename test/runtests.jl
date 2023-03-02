@@ -16,8 +16,8 @@ using LinearAlgebra
         6
     ]
     updated_speeds_flow_step = [
-        [0, 0, 2],
-        [7, 7],
+        [0, 1, 2],
+        [7, 1],
         [6]
     ]
 
@@ -71,7 +71,7 @@ end
         [1]
     ]
     max_channels_load = [
-        Inf # 1st channel is virtual
+        10.
         3.
         1.
     ]
@@ -96,8 +96,8 @@ end
     ]
     speeds_start = [
         0
-        7
-        6
+        12
+        8
     ]
     channels_to_flow_steps = [
         ([1, 2, 3], [1, 1, 1])
@@ -110,14 +110,14 @@ end
         [1]
     ]
     max_channels_load = [
-        Inf
+        10.
         3.
         1.
     ]
     updated_speeds_flow_step = [
-        [0., 0., 0.3], # 1 -> 2 -> 3
-        [7., 0.7], # 1 -> 3
-        [6.] # 1
+        [0., 1., 0.75], # 1 -> 2 -> 3
+        [6., 0.25], # 1 -> 3
+        [4.] # 1
     ]
 
 
