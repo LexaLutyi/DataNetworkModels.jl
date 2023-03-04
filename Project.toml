@@ -1,7 +1,7 @@
 name = "DataNetworkModels"
 uuid = "995f4f89-f633-4bea-be3c-9aca61510b0b"
 authors = ["Samarin Aleksei <liotbiu1@gmail.com> and contributors"]
-version = "0.2.1"
+version = "0.2.2"
 
 [deps]
 GraphNeuralNetworks = "cffab07f-9bc2-4db1-8861-388f63bf7694"
